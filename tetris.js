@@ -217,6 +217,7 @@ try{
 						}
 					}
 					break;
+				case "ArrowUp":
 				case "Shift":
 				case "e":
 					pieceRot--;
