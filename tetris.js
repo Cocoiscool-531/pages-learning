@@ -1,13 +1,13 @@
 try{
 	
 	/*
-		make peices fall faster after each 500 points by 10%
+		make pieces fall faster after each 500 points by 10%
 		make board scale to window resoultion
 	*/
 	
-	//peiceTables
+	//pieceTables
 	//x,y,x,y,x,y,x,y,color,id
-	let peiceTabler0 = [
+	let pieceTabler0 = [
 		[0,0,0,1,1,0,1,1,1,0],
 		[0,0,0,-1,1,0,-1,0,2,1],
 		[0,0,0,1,0,2,0,-1,0,2],
@@ -16,7 +16,7 @@ try{
 		[0,0,-1,0,1,1,0,1,3,5],
 		[0,0,1,0,-1,1,0,1,4,6]
 	];
-	let peiceTabler1 = [
+	let pieceTabler1 = [
 		[0,0,0,1,1,0,1,1,1,0],
 		[0,0,0,1,1,0,0,-1,2,1],
 		[0,0,1,0,2,0,-1,0,0,2],
@@ -25,7 +25,7 @@ try{
 		[0,0,0,1,1,-1,1,0,3,5],
 		[0,0,0,-1,1,1,1,0,4,6]
 	];
-	let peiceTabler2 = [
+	let pieceTabler2 = [
 		[0,0,0,1,1,0,1,1,1,0],
 		[0,0,0,1,1,0,-1,0,2,1],
 		[0,0,0,1,0,2,0,-1,0,2],
@@ -34,7 +34,7 @@ try{
 		[0,0,-1,0,1,1,0,1,3,5],
 		[0,0,1,0,-1,1,0,1,4,6]
 	];
-	let peiceTabler3 = [
+	let pieceTabler3 = [
 		[0,0,0,1,1,0,1,1,1,0],
 		[0,0,0,1,0,-1,-1,0,2,1],
 		[0,0,1,0,2,0,-1,0,0,2],
@@ -58,22 +58,22 @@ try{
 	//random gen list
 	let list = [0,1,2,3,4,5,6];
 	
-	//nextPeice
+	//nextpiece
 	let nextCanvas = document.getElementById("next");
 	let nextCtx = nextCanvas.getContext("2d");
 	let nextId = nextRand();
-	let next = peiceTabler0[nextId];
+	let next = pieceTabler0[nextId];
 	//69
-	//held Peice
+	//held piece
 	let heldCanvas = document.getElementById("held");
 	let heldCtx = heldCanvas.getContext("2d");
 	let held = 0;
 	
-	//peice things
-	let peice = peiceTabler0[nextRand()];
-	let peicex = 4;
-	let peicey = 4;
-	let peiceRot = 0;
+	//piece things
+	let piece = pieceTabler0[nextRand()];
+	let piecex = 4;
+	let piecey = 4;
+	let pieceRot = 0;
 	let swap = false;
 	
 	let lineClear = false;
@@ -113,15 +113,15 @@ try{
 				ctx.fillRect(x*box,y*box,box,box);
 			}
 		}
-		ctx.fillStyle = colors[peice[8]];
+		ctx.fillStyle = colors[piece[8]];
 		for(let i = 0; i < 8; i+=2){
-			ctx.fillRect((peice[i]+peicex)*box,(peice[i+1]+peicey)*box,box,box);
+			ctx.fillRect((piece[i]+piecex)*box,(piece[i+1]+piecey)*box,box,box);
 		}
-		ctx.fillStyle = colors[peice[8]] + "40";
+		ctx.fillStyle = colors[piece[8]] + "40";
 		for(let y = 0; y < height; y++){
 			if(collide(false, y)){
 				for(let i = 0; i < 8; i+=2){
-					ctx.fillRect((peice[i]+peicex)*box,(peice[i+1]+peicey+y)*box,box,box);
+					ctx.fillRect((piece[i]+piecex)*box,(piece[i+1]+piecey+y)*box,box,box);
 				}
 				break;
 			}
@@ -154,7 +154,7 @@ try{
 
 	let intervalId = window.setInterval(function(){
 	if(active && !lineClear){
-		if(!collide(true,0)){peicey++;}
+		if(!collide(true,0)){piecey++;}
 			rowCheck();
 			draw();
 			scoreDiv.innerHTML = "score: "+score;
@@ -181,36 +181,36 @@ try{
 				case "ArrowDown":
 				case "s":
 					for(let i = 0; i < 8; i+=2){
-						if(grid[peice[i]+peicex][peice[i+1]+peicey+1] != 7){
+						if(grid[piece[i]+piecex][piece[i+1]+piecey+1] != 7){
 							didCollide = true;
 							break;
 						}
-						if(peice[i+1]+peicey >= height){
+						if(piece[i+1]+piecey >= height){
 							didCollide = true
 							break;
 						}
 					}
-					if(!didCollide){peicey++;}
+					if(!didCollide){piecey++;}
 					break;
 				case "q":
-					peiceRot++;
-					if(peiceRot == 4){
-						peiceRot = 0;
+					pieceRot++;
+					if(pieceRot == 4){
+						pieceRot = 0;
 					}
 					applyRotation();
 					for(let i = 0; i < 8; i+=2){
-						if(grid[peice[i]+peicex][peice[i + 1]+peicey] != 7){
-							peiceRot--;
-							if(peiceRot == -1){
-								peiceRot = 3;
+						if(grid[piece[i]+piecex][piece[i + 1]+piecey] != 7){
+							pieceRot--;
+							if(pieceRot == -1){
+								pieceRot = 3;
 							}
 							applyRotation();
 							break;
 						}
-						if(peice[i] < 0 || peice[i] >= width){
-							peiceRot--;
-							if(peiceRot == -1){
-								peiceRot = 3;
+						if(piece[i] < 0 || piece[i] >= width){
+							pieceRot--;
+							if(pieceRot == -1){
+								pieceRot = 3;
 							}
 							applyRotation();
 							break;
@@ -219,41 +219,41 @@ try{
 					break;
 				case "Shift":
 				case "e":
-					peiceRot--;
-					if(peiceRot == -1){
-						peiceRot = 3;
+					pieceRot--;
+					if(pieceRot == -1){
+						pieceRot = 3;
 					}
 					applyRotation();
 					break;
 				case "ArrowLeft":
 				case "a":
 					for(let i = 0; i < 8; i+=2){
-						if(grid[peice[i]+peicex-1][peice[i + 1]+peicey] != 7){
+						if(grid[piece[i]+piecex-1][piece[i + 1]+piecey] != 7){
 							didCollide = true;
 							break;
 						}
-						if(peice[i] + peicex <= 0){
+						if(piece[i] + piecex <= 0){
 							didCollide = true
 							break;
 						}
 					}
-					if(!didCollide){peicex--;}
+					if(!didCollide){piecex--;}
 					break;
 				case "ArrowRight":
 				case "d":
 					for(let i = 0; i < 8; i+=2){
-						if(grid[peice[i]+peicex+1][peice[i+1]+peicey] != 7){
+						if(grid[piece[i]+piecex+1][piece[i+1]+piecey] != 7){
 							didCollide = true;
 							break;
 						}
-						if(peice[i]+peicex >= width){
+						if(piece[i]+piecex >= width){
 							didCollide = true
 							break;
 						}
 					}
-					if(!didCollide){peicex++;}
+					if(!didCollide){piecex++;}
 					break;
-				case "ArrowUp":
+				/*case "ArrowUp":
 				case "w":
 					for(let y = 0; y < height; y++){
 						if(collide(true, y)){
@@ -261,23 +261,23 @@ try{
 							break;
 						}
 					}
-					break;
+					break;*/
 				case "Backspace":
 					active = false;;
 					break;
 				case "Enter":
 					active = true;
 					break;
-				case "Control":
+				case "Alt":
 				case "r":
 					if(!swap){
 						let temp = held;
-						held = peice;
-						peice = temp;
-						if(peice == 0){
-							peice = next;
+						held = piece;
+						piece = temp;
+						if(piece == 0){
+							piece = next;
 							nextId = nextRand();
-							next = peiceTabler0[nextId];
+							next = pieceTabler0[nextId];
 					}
 					applyRotation();
 					swap = true;
@@ -301,11 +301,11 @@ try{
 	function collide(lineBreak, yOffset){
 		let didCollide = false;
 		for(let i = 0; i < 8; i+=2){
-			if(grid[peice[i]+peicex][peice[i+1]+peicey+1+yOffset] != 7){
+			if(grid[piece[i]+piecex][piece[i+1]+piecey+1+yOffset] != 7){
 				didCollide = true;
 				break;
 			}
-			if(peice[i+1]+peicey >= height){
+			if(piece[i+1]+piecey >= height){
 				didCollide = true;
 				break;
 			}
@@ -313,14 +313,14 @@ try{
 		if(lineBreak){
 			if(didCollide){
 				for(let i = 0; i < 8; i+=2){
-					grid[peice[i]+peicex][peice[i+1]+peicey+yOffset] = peice[8];
+					grid[piece[i]+piecex][piece[i+1]+piecey+yOffset] = piece[8];
 				}
-				peicex = 4;
-				peicey = 1;
-				peicerot = 0;
-				peice = peiceTabler0[nextId];
+				piecex = 4;
+				piecey = 1;
+				piecerot = 0;
+				piece = pieceTabler0[nextId];
 				nextId = nextRand();
-				next = peiceTabler0[nextId];
+				next = pieceTabler0[nextId];
 				applyRotation();
 				swap = false;
 			}
@@ -331,18 +331,18 @@ try{
 	//apply rotation
 	
 	function applyRotation(){
-		switch(peiceRot){
+		switch(pieceRot){
 			case 0:
-				peice = peiceTabler0[peice[9]];
+				piece = pieceTabler0[piece[9]];
 				break;
 			case 1:
-				peice = peiceTabler1[peice[9]];
+				piece = pieceTabler1[piece[9]];
 				break;
 			case 2:
-				peice = peiceTabler2[peice[9]];
+				piece = pieceTabler2[piece[9]];
 				break;
 			case 3:
-				peice = peiceTabler3[peice[9]];
+				piece = pieceTabler3[piece[9]];
 				break;
 		}
 	}
@@ -412,7 +412,7 @@ try{
 		}
 	}
 
-	//random number for peice generation
+	//random number for piece generation
 
 	function nextRand(){
 		a = Math.floor(Math.random() * list.length);
