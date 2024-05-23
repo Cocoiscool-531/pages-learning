@@ -149,7 +149,7 @@ try{
 			document.cookie = score;
 		}
 
-		document.getElementById("highScore").innerHTML = "high score: " + document.cookie;
+		document.getElementById("highScore").innerHTML = "high score: " + lineChecked;
 	}
 	
 	//loop every 1/2 second
