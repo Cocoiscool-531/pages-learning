@@ -419,10 +419,12 @@ try{
 				}
 			}, 250);
 		}
-		     if (linesCleared == 1){score+=100;}
-		else if (linesCleared == 2){score+=200;}
-		else if (linesCleared == 3){score+=600;}
-		else if (linesCleared >  3)(score+=2400);
+		if(!lineChecked){
+				if (linesCleared == 1){score+=100;}
+			else if (linesCleared == 2){score+=200;}
+			else if (linesCleared == 3){score+=600;}
+			else if (linesCleared >  3)(score+=2400);
+		}
 	}
 
 	//random number for piece generation
