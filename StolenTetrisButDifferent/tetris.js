@@ -413,6 +413,7 @@ try{
 				draw();
 				if(!changed){
 					lineClear = false;
+					lineChecked=true;
 					window.clearInterval(id);
 					return;
 				}
@@ -424,7 +425,6 @@ try{
 			else if (linesCleared == 3){score+=600;}
 			else if (linesCleared >  3)(score+=2400);
 		}
-		lineChecked = true;
 	}
 
 	//random number for piece generation
