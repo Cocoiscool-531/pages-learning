@@ -256,7 +256,7 @@ try{
 					}
 					if(!didCollide){piecex++;}
 					break;
-				case "Control":
+				case "/":
 					for(let y = 0; y < height; y++){
 						if(collide(true, y)){
 							rowCheck();
