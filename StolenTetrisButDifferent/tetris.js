@@ -353,7 +353,7 @@ try{
 	
 	function rowCheck(){
 		
-		if(!lineChecked){
+		if(lineChecked){
 			linesCleared = 0;
 		}
 		let b = false;
