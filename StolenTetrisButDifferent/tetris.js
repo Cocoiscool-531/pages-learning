@@ -145,11 +145,11 @@ try{
 		}
     
 		let highScore = parseInt(document.cookie);
-		if(highScore < score){
+		if(score > highScore){
 			document.cookie = score;
 		}
 
-		document.getElementById("highScore").innerHTML = "high score: " + lineChecked;
+		document.getElementById("highScore").innerHTML = "high score: " + document.cookie;
 	}
 	
 	//loop every 1/2 second
