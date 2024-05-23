@@ -398,6 +398,12 @@ try{
 						changed = true;
 					}
 				}
+				if(!lineChecked){
+					if (linesCleared == 1){score+=100;}
+				else if (linesCleared == 2){score+=200;}
+				else if (linesCleared == 3){score+=600;}
+				else if (linesCleared >  3)(score+=2400);
+				}
 				if(a){
 					
 					for(let x = 0; x < width; x++){
@@ -413,17 +419,10 @@ try{
 				draw();
 				if(!changed){
 					lineClear = false;
-					lineChecked=true;
 					window.clearInterval(id);
 					return;
 				}
 			}, 250);
-		}
-		if(!lineChecked){
-				if (linesCleared == 1){score+=100;}
-			else if (linesCleared == 2){score+=200;}
-			else if (linesCleared == 3){score+=600;}
-			else if (linesCleared >  3)(score+=2400);
 		}
 	}
 
