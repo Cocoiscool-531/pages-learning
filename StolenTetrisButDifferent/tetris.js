@@ -399,7 +399,7 @@ try{
 					}
 				}
 				if(a){
-					lineChecked = true;
+					
 					for(let x = 0; x < width; x++){
 						for(let y = height; y > 1; y--){
 							if(grid[x][y] == 7 && grid[x][y-1] != 7){
@@ -424,6 +424,7 @@ try{
 			else if (linesCleared == 3){score+=600;}
 			else if (linesCleared >  3)(score+=2400);
 		}
+		lineChecked = true;
 	}
 
 	//random number for piece generation
