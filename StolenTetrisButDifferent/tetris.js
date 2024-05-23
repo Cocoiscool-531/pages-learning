@@ -44,6 +44,8 @@ try{
 		[0,0,0,-1,1,1,1,0,4,6]
 	];
 	
+	let lineChecked = false; 
+	let linesCleared = 0;
 	let board = document.getElementById("board");
 	let ctx = board.getContext("2d");
 	let box = 32;
@@ -254,15 +256,14 @@ try{
 					}
 					if(!didCollide){piecex++;}
 					break;
-				/*case "ArrowUp":
-				case "w":
+				case "Control":
 					for(let y = 0; y < height; y++){
 						if(collide(true, y)){
 							rowCheck();
 							break;
 						}
 					}
-					break;*/
+					break;
 				case "Backspace":
 					active = false;;
 					break;
@@ -351,6 +352,10 @@ try{
 	//check for rows
 	
 	function rowCheck(){
+		
+		if(!lineChecked){
+			linesCleared = 0;
+		}
 		let b = false;
 		let changed = true;
 		for(let y = 0; y < height; y++){
@@ -363,7 +368,10 @@ try{
 				}
 			}
 			if(filled == width){
+				lineChecked = false;
 				b = true;
+			}else{
+				lineChecked = true;
 			}
 		}
 		if(b){
@@ -388,7 +396,7 @@ try{
 							}
 						}
 						a = true;
-						score+=100;
+						linesCleared+=1;
 						changed = true;
 					}
 				}
@@ -411,6 +419,10 @@ try{
 				}
 			}, 250);
 		}
+		     if (linesCleared == 1){score+=100;}
+		else if (linesCleared == 2){score+=200;}
+		else if (linesCleared == 3){score+=600;}
+		else if (linesCleared >  3)(score+=2400);
 	}
 
 	//random number for piece generation
