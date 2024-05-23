@@ -397,15 +397,15 @@ try{
 						linesCleared+=1;
 						changed = true;
 					}
+				}
 					if(!lineChecked){
-						if (linesCleared == 1){score+=100;}
+						 if (linesCleared == 1){score+=100;}
 					else if (linesCleared == 2){score+=200;}
 					else if (linesCleared == 3){score+=400;}
-					else if (linesCleared >  3)(score+=800);
+					else if (linesCleared  > 3)(score+=800);
 					}
-				}
 				if(a){
-					
+					linesCleared = 0;
 					for(let x = 0; x < width; x++){
 						for(let y = height; y > 1; y--){
 							if(grid[x][y] == 7 && grid[x][y-1] != 7){
