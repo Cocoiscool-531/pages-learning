@@ -370,8 +370,6 @@ try{
 			if(filled == width){
 				lineChecked = false;
 				b = true;
-			}else{
-				lineChecked = true;
 			}
 		}
 		if(b){
@@ -401,6 +399,7 @@ try{
 					}
 				}
 				if(a){
+					lineChecked = true;
 					for(let x = 0; x < width; x++){
 						for(let y = height; y > 1; y--){
 							if(grid[x][y] == 7 && grid[x][y-1] != 7){
